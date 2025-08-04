@@ -1,0 +1,37 @@
+.studentInfo {
+    font-family: monospace, Arial, Helvetica; 
+    display: block;
+    margin: auto;
+    width: 500px;
+    text-align: center;
+}
+.studentCreds {
+    font-family: monospace, Arial, Helvetica;
+}
+/* body{
+    background-color: #969eb5;
+    padding: 20px;
+    margin-left: 30px auto;
+} */
+ 
+
+body{
+    font-family:'Courier New', Courier, monospace;
+    max-width: 800px;
+    background-color: #b7b7b7;
+    margin: 0px auto;
+    padding: 20px;
+    color: #192038;
+    border-bottom: 4px solid;
+    padding-bottom: 20px;
+}
+
+.img {
+    display: block;
+    margin: auto;
+}
+.studentQuote {
+    margin-left: 60%;
+    font-style: italic;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
