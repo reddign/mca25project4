@@ -50,7 +50,7 @@ timer()
 
 function gameloop(){
     clear()
-    test()
+  
     drawPlayer()
     if(readytoEcholocate==true){
     graphics.fillStyle="red"
