@@ -2,33 +2,49 @@
     font-family: monospace, Arial, Helvetica; 
     display: block;
     margin: auto;
-    width: 500px;
     text-align: center;
 }
 .studentCreds {
-    font-family: monospace, Arial, Helvetica;
+    font-family: monospace;
 }
-/* body{
+.studentCreds,.studentInfo{ 
+    /* makes the box around the information */
     background-color: #969eb5;
     padding: 20px;
     margin-left: 30px auto;
-} */
+}
+.titleText{
+    font-weight: bold;
+    text-align: center;
+    font-family: monospace;
+    padding: 20px;
+    font-size:x-large;
+    margin-left: 350px;
+    margin-right: 350px;
+    
+}
  
-
 body{
+    background-color: #a7afc9;
+}
+
+.Student{
     font-family:'Courier New', Courier, monospace;
+    
+
     max-width: 800px;
-    background-color: #b7b7b7;
+    background-color: #a7afc9;
     margin: 0px auto;
     padding: 20px;
-    color: #192038;
-    border-bottom: 4px solid;
+    color: #251938;
+    border-bottom: 2px dashed;
     padding-bottom: 20px;
 }
 
 .img {
     display: block;
     margin: auto;
+    border-radius: 10%;
 }
 .studentQuote {
     margin-left: 60%;
