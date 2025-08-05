@@ -1,0 +1,24 @@
+-----
+
+Checklist:
+    - Title Screen
+        - Play button
+        - Tutorial button
+        - About Us button
+        - Leaderboard
+        - Credits Page
+    - Minigames
+        - Wall Ball Pong - 
+        - Stamp Circle - 
+        - Space Invaders - 
+        - Echo Maze - 
+        - Do Nothing - 
+        - Memory Cards - 
+        - G-Dash Zig Zag - 
+        - Grid Maze (like 1x1 Bloxorz) - 
+    - Tutorial Page
+        - picture of controls (M1 and Mouse Move) and like "do the thing it tells you"
+    - Scoreboard
+        - Give initials after game over, which logs a table of initials and scores
+
+-----
