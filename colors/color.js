@@ -5,7 +5,11 @@ nested for-loop to see if it's colored, then add to another variable that is com
 let canvas = document.querySelector("canvas")
 let graphics = canvas.getContext("2d")
 graphics.strokeStyle = "black"
-graphics.strokeRect(50,50,50,50)
+
+let randx = Math.random() * (canvas.width - 100) + 50
+let randy = Math.random() * (canvas.height - 100) + 50
+
+graphics.strokeRect(randx,randy,50,50)
 
 
 function paint(event)
