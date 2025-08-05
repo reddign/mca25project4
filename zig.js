@@ -11,7 +11,7 @@ function ball()
 {
     graphics.fillStyle = "white"
     graphics.beginPath()
-    graphics.arc(x,y,30,0, Math.PI * 2)
+    graphics.arc(x,y,20,0, Math.PI * 2)
     graphics.fill()
     graphics.closePath()
 }
@@ -22,7 +22,7 @@ function clear()
     graphics.fillRect(0,0,canvas.width, canvas.height)
 }
 
-function click(event)
+function changesthings(event)
 {
     dir = dir * -1
     console.log("confirm")
@@ -31,6 +31,7 @@ function click(event)
 function move()
 {
     y += dir * 2
+    x += 
 }
 
 function animate()
