@@ -4,20 +4,21 @@ const graphics = canvas.getContext("2d");
 let playerX = -100
 let playerY = -100
 
-let readytoEcholocate = false
+// let readytoEcholocate = false
 let lost=0
 
 let i=0
-let op=0 //op for opacity
+let op=1
+//op for opacity
 
 
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === ' ' && readytoEcholocate==true) {
-        op=1
-        readytoEcholocate=false
-    } // spacebar (' ') attempts to turn on echolocation
-});
+// document.addEventListener('keydown', function(event) {
+//     if (event.key === ' ' && readytoEcholocate==true) {
+//         op=1
+//         readytoEcholocate=false
+//     } // spacebar (' ') attempts to turn on echolocation
+// });
 
 
 function block(x,y,w,h,op){
@@ -29,34 +30,21 @@ function block(x,y,w,h,op){
     graphics.fillStyle="RGB(230,230,230," + op + ")"
     graphics.fillRect(x,y,w,h)
 }
-
-function timer(){ // timer separate from game's framerate, controls when echolocation is available
-    if (i==5){
-            i = 0
-            readytoEcholocate = true
-            // makes echolocation available after 5 ticks
-        }else if(i==2){
-                op=0 // turns off the walls after 2 ticks
-                readytoEcholocate=false
-            }
-        if(readytoEcholocate==false){
-            i++ //makes sure the timer stops when echolocate is available
-        }
-            console.log(i,readytoEcholocate); //can be removed, just making sure the timer is working
             
+
+function timer(){// timer separate from game's framerate, controls the maze becoming less visible
+    if(i<100){
+        i++
+        op = op-0.015
+    }
 }
 timer()
 
 
 function gameloop(){
     clear()
-  
     drawPlayer()
-    if(readytoEcholocate==true){
-    graphics.fillStyle="red"
-    graphics.fillRect(20,20,20,20,1) //indicator for when echolocate is ready
-
-}graphics.fillStyle="white"
+    graphics.fillStyle="white"
 graphics.fillRect(450,90,30,30,1)
 drawMaze()
 
@@ -112,4 +100,4 @@ function movePlayer(e){
 
 
 window.setInterval(gameloop,60)
-window.setInterval(timer,1000)
+window.setInterval(timer,50);
