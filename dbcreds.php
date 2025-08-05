@@ -8,9 +8,9 @@ if($_SERVER['HTTP_HOST']=="127.0.0.1"){
     $database = "mca";
 }else{//TODO: revisit this area to get password correct
 
-    $servername = "srv557.hstgr.io";
-    $username = "u413142534_??";
-    $password = "?????????";
-    $database = "u413142534_??";
+    $servername = "frog.etownmca.com";
+    $username = "u121755072_frog";
+    $password = "3kF#~iUjk*";
+    $database = "u121755072_frogdb";
 }
 ?>
