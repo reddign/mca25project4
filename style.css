@@ -1,0 +1,48 @@
+/* Center canvas in viewport */
+body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+}
+#gameDisplay {
+    margin: auto;
+}
+
+#customCursor {
+    position: fixed;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/* If fullscreen enabled, scale canvas to viewport size */
+#gameDisplay:-webkit-full-screen {
+    width: 100% !important;
+}
+#gameDisplay:-moz-full-screen {
+    width: 100% !important; 
+}
+#gameDisplay:-ms-fullscreen {
+    width: 100% !important;
+}
+#gameDisplay:fullscreen {
+    width: 100% !important;
+}
+
+/* If fullscreen enabled, hide children with class 'tohide' */
+:-webkit-full-screen .tohide {
+    display: none;
+}
+:-moz-full-screen .tohide {
+    display: none;
+}
+:-ms-fullscreen .tohide {
+    display: none;
+}
+:fullscreen .tohide {
+    display: none;
+}
