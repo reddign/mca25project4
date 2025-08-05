@@ -1,15 +1,61 @@
 // Initialize canvas
 const canvas = document.getElementById("gameDisplay");
-const display = canvas.getContext("2d");
+const graphics = canvas.getContext("2d");
+
+// Initialize custom cursor
+const customCursor = document.getElementById("customCursor");
 
 // Initialize variables
-const customCursor = document.getElementById("customCursor");
-let cursorX = 0;
-let cursorY = 0;
+let cursorX;
+let cursorY;
 
-document.addEventListener("mousemove", (e) => {
-    customCursor.style.left = `${e.clientX}px`;
-    customCursor.style.top = `${e.clientY}px`;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+graphics.textAlign = "center";
+graphics.textBaseline = "middle";
+graphics.font = "30px Arial";
+graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    graphics.textAlign = "center";
+    graphics.textBaseline = "middle";
+    graphics.font = "30px Arial";
+    graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+});
+
+canvas.addEventListener("mousemove", (e) => {
+    if (document.pointerLockElement) {
+        // Custom cursor moves independently while pointer locked
+        cursorX += e.movementX;
+        cursorY += e.movementY;
+        customCursor.style.left = `${cursorX}px`;
+        customCursor.style.top = `${cursorY}px`;
+
+        // Keeps custom cursor inside viewport
+        if(cursorX < 0) {
+            cursorX = 0;
+            customCursor.style.left = "0px";
+        } else if(cursorX > window.innerWidth) {
+            cursorX = window.innerWidth;
+            customCursor.style.left = `${window.innerWidth}px`;
+        }
+
+        if(cursorY < 0) {
+            cursorY = 0;
+            customCursor.style.top = "0px";
+        } else if(cursorY > window.innerHeight) {
+            cursorY = window.innerHeight;
+            customCursor.style.top = `${window.innerHeight}px`;
+        }
+    } else {
+        // Custom cursor snaps to pointer while pointer unlocked
+        cursorX = e.clientX
+        cursorY = e.clientY
+        customCursor.style.left = `${cursorX}px`;
+        customCursor.style.top = `${cursorY}px`;
+    }
 });
 
 // Enter fullscreen on click
@@ -23,15 +69,13 @@ canvas.addEventListener("click", () => {
     } else if (canvas.msRequestFullscreen) { // IE/Edge Compatability
         canvas.msRequestFullscreen();
     }
-    canvas.requestPointerLock();
+    canvas.requestPointerLock(); // Locks the pointer
 });
 
-document.addEventListener("pointerlockchange", () => {
-    if (document.pointerLockElement) {
-        // Show the custom cursor when pointer locked
-        customCursor.style.display = 'block';
+document.addEventListener("fullscreenchange", (e) => {
+    if (document.fullscreenElement) {
+        // Testing
     } else {
-        // Hide the custom cursor when pointer unlocked
-        customCursor.style.display = 'none';
+        // Testing
     }
 });

@@ -1,36 +1,28 @@
-/* Center canvas in viewport */
-body {
-    height: 100vh;
+/* Removes extra space */
+html, body {
     margin: 0;
-    display: grid;
+    padding: 0;
 }
+
+/* Hides default cursor */
+body {
+    cursor: none;
+}
+
 #gameDisplay {
-    margin: auto;
+    width: 100vw; /* 100% viewport width */
+    height: 100vh; /* 100% viewport height */
+    display: block; /* Removes extra space */
 }
 
 #customCursor {
-    position: fixed;
-    pointer-events: none;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-
-/* If fullscreen enabled, scale canvas to viewport size */
-#gameDisplay:-webkit-full-screen {
-    width: 100% !important;
-}
-#gameDisplay:-moz-full-screen {
-    width: 100% !important; 
-}
-#gameDisplay:-ms-fullscreen {
-    width: 100% !important;
-}
-#gameDisplay:fullscreen {
-    width: 100% !important;
+    position: fixed; /* Prevents interactions with other elements */
+    pointer-events: none; /* Prevents interactions with pointer */
+    width: 25px; /* Width of cursor image */
+    height: 32px; /* Height of cursor image */
+    background-image: url('images/customCursor.png'); /* Cursor image filepath */
+    transform: translate(-50%, -50%); /* Centers cursor */
+    z-index: 1; /* Brings cursor to front */
 }
 
 /* If fullscreen enabled, hide children with class 'tohide' */
