@@ -14,7 +14,7 @@
 // if($_SERVER['HTTP_HOST']=="127.0.0.1"){
 //     $mysqli = new mysqli("127.0.0.1","root","","mca");
 // }else{ //TODO: edit this so password is password 
-//     $mysqli = new mysqli("195.35.59.14","u121755072_cruz1","x^U7402V","u121755072_cruz1db");
+//     $mysqli = new mysqli("195.35.59.14","u121755072_username","password","u121755072_dbname");
 // }
 
 // if ($mysqli->connect_errno) {
