@@ -35,11 +35,11 @@ function firstFrame(timestamp) {
     animate(timestamp);
 }
 function animate(timestamp) {
-    const value = 1 - ((timestamp - zero) / 3333);
+    const value = (timestamp - zero) / 3333;
     if (value > 0) {
-        op = value;
+        op = 1 - value;
         requestAnimationFrame(animate);
-    } else op = 1;
+    } else op = 0;
 }
 
 function animateblind(){
