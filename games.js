@@ -9,10 +9,11 @@ const customCursor = document.getElementById("customCursor");
 let cursorX;
 let cursorY;
 const jsFiles = [
-    "blindmaze/blind.js",
-    "donothing/donothing.js",
-    "pong/repong.js",
-    "zigzag/zig.js"
+    "blind.js",
+    "color.js",
+    "donothing.js",
+    "pong.js",
+    "zig.js"
 ];
 
 canvas.width = window.innerWidth;
