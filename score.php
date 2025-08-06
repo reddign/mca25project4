@@ -1,5 +1,5 @@
 
-
+<!-- this is code that adds to the leaderboard, it isnt the leaderboard itself -->
 <!-- commented out for now so it doesnt break anything if it doesnt work -->
 <form action="score.php" method="post">
         <label for="username">Username:</label>
