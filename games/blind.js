@@ -41,7 +41,7 @@ function timer(){// timer separate from game's framerate, controls the maze beco
 timer()
 
 
-function gameloop(){
+function animateblind(){
     clear()
     drawPlayer()
     graphics.fillStyle="white"
@@ -99,5 +99,5 @@ function movePlayer(e){
 
 
 
-window.setInterval(gameloop,60)
+window.setInterval(animateblind,60)
 window.setInterval(timer,50);

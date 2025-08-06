@@ -90,7 +90,7 @@ function maze()
     }
 }
 
-function animateZig()
+function animatezig()
 {
     clear()
     graphics.fillStyle = "lime"
@@ -103,4 +103,4 @@ function animateZig()
     move()
 }
     console.log(graphics.getImageData(x, y, 1, 1))
-window.setInterval(animateZig, fps/2000)
+window.setInterval(animatezig, fps/2000)
