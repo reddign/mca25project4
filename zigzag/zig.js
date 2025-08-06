@@ -34,8 +34,7 @@ function click(event)
 
 function move()
 {
-    if (x < 1475)
-    {
+    if (x < 1475 && context.getImageData)    {
     y += dir * 2
     x += spd
     }
