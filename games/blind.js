@@ -36,7 +36,7 @@ function firstFrame(timestamp) {
 }
 function animate(timestamp) {
     const value = (timestamp - zero) / 3333;
-    if (value > 0) {
+    if (value < 1) {
         op = 1 - value;
         requestAnimationFrame(animate);
     } else op = 0;
