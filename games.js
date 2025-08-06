@@ -8,6 +8,11 @@ const customCursor = document.getElementById("customCursor");
 // Initialize variables
 let cursorX;
 let cursorY;
+const jsFiles = [
+    "js/script1.js",
+    "js/script2.js",
+    "js/script3.js"
+];
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -20,7 +25,7 @@ window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
+
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
