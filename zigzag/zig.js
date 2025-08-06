@@ -26,7 +26,7 @@ function clear()
     graphics.fillRect(0,0,canvas.width, canvas.height)
 }
 
-function click(event)
+function changesthings(event)
 {
     dir = dir * -1
     spd += 0.25
@@ -34,7 +34,8 @@ function click(event)
 
 function move()
 {
-    if (x < 1475 && context.getImageData)    {
+    if (x < 1475)
+    {
     y += dir * 2
     x += spd
     }
@@ -102,5 +103,5 @@ function animate()
     ball()
     move()
 }
-
+    console.log(graphics.getImageData(x, y, 1, 1))
 window.setInterval(animate, fps/2000)
