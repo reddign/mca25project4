@@ -102,5 +102,10 @@ export function animatezig()
     ball()
     move()
 }
+<<<<<<< HEAD:games/zig.js
     console.log(graphics.getImageData(x, y, 1, 1))
 window.setInterval(animatezig, fps/2000)
+=======
+    console.log(graphics.getImageData(x, y, 1, ))
+window.setInterval(animate, fps/2000)
+>>>>>>> 860232a (colors):zigzag/zig.js

@@ -6,8 +6,8 @@ let canvas = document.querySelector("canvas")
 let graphics = canvas.getContext("2d")
 graphics.strokeStyle = "black"
 
-let randx = Math.random() * (canvas.width - 100) + 50
-let randy = Math.random() * (canvas.height - 100) + 50
+let randx = Math.round(Math.random() * (canvas.width - 100) + 50)
+let randy = Math.round(Math.random() * (canvas.height - 100) + 50)
 
 graphics.strokeRect(randx,randy,50,50)
 
@@ -20,13 +20,22 @@ function paint(event)
         draw(x, y)
 }
 
+function see(event)
+{
+    if (graphics.getImageData(randx + 1,randy + 1,48, 48) == "rgb(0,255,0)")
+    {
+        console.log("ye")
+    }
+    else
+    {
+        console.log("no")
+    }
+}
+
 function draw(x, y)
 {
-    graphics.fillStyle = "green"
+    graphics.fillStyle = "rgb(0,255,0)"
     graphics.fillRect(x, y, 10, 10)
 }
 
-function check()
-{
 
-}
