@@ -8,19 +8,17 @@ const customCursor = document.getElementById("customCursor");
 // Initialize variables
 let cursorX;
 let cursorY;
-const jsFiles = [
-    "blind.js",
-    "color.js",
-    "donothing.js",
-    "pong.js",
-    "zig.js"
-];
 
-import {gameloop} from "games/blind.js";
-import {animate} from "games/color.js";
-import {animate} from "games/donothing.js";
-import {animate} from "games/pong.js";
-import {animate} from "games/zig.js";
+// Import games
+import {animateblind} from "games/blind.js";
+import {animatepong} from "games/pong.js";
+import {animatezig} from "games/zig.js";
+
+const games = [
+    "animateblind",
+    "animatepong",
+    "animatezig"
+];
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -34,7 +32,8 @@ window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         const randomIndex = Math.floor(Math.random() * jsFiles.length);
-        const randomJsFile = jsFiles[randomIndex];
+        games[randomIndex]();
+
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
