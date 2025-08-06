@@ -74,8 +74,7 @@ function movePlayer(e){
     playerY = e.offsetY;
     playerX = e.offsetX;
 
-    const pixelColor = canvas.getContext('2d');
-    let imageData = pixelColor.getImageData(playerX,playerY,1,1);
+    let imageData = graphics.getImageData(playerX,playerY,1,1);
     let pixel = imageData.data;
     let isNotWall = (pixel[0]==0 && pixel[1]==0 && pixel[2]==0);
     let isPlayer = (pixel[0]==255 && pixel[1]==255 && pixel[2]==0);
