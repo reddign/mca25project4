@@ -2,16 +2,16 @@
 
 Checklist:
     - Title Screen
-        - Play button
-        - Tutorial button
-        - About Us button
-        - Leaderboard
-        - Credits Page
-    - Minigames
-        - Wall Ball Pong - 
-        - color Circle -  
-        - Echo Maze - 
-        - Do Nothing - 
+        - Play button - Works!... mostly
+        - Tutorial button - Works!
+        - About Us button - Works!
+        - Leaderboard - looking good
+        - Credits Page - worked on
+    - Minigames - need to actually be in the game now
+        - Wall Ball Pong - works well
+        - color Circle - needs detection
+        - Echo Maze - needs detection I think
+        - Do Nothing - easy enough to leave for last
         - Memory Cards - 
         - G-Dash Zig Zag - 
         - Grid Maze (like 1x1 Bloxorz) - 

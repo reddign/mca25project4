@@ -6,6 +6,7 @@ let y = 50
 let fps = 5
 let dir = 1
 let spd = 1
+let win = 0
 
 graphics.fillStyle = "lime"
 graphics.fillRect(1300,0,100,canvas.height)
@@ -14,7 +15,7 @@ function ball()
 {
     graphics.fillStyle = "yellow"
     graphics.beginPath()
-    graphics.arc(x,y,20,0, Math.PI * 2)
+    graphics.arc(x,y,15,0, Math.PI * 2)
     graphics.fill()
     graphics.closePath()
 }
@@ -25,7 +26,7 @@ function clear()
     graphics.fillRect(0,0,canvas.width, canvas.height)
 }
 
-function changesthings(event)
+function click(event)
 {
     dir = dir * -1
     spd += 0.25
@@ -38,6 +39,10 @@ function move()
     y += dir * 2
     x += spd
     }
+    else
+    {
+
+    }
 
 }
 
@@ -47,6 +52,10 @@ let randomaze = Math.round(Math.random() * 3)
 function maze()
 {
     graphics.fillStyle = "white"
+    if(randomaze != 1 && randomaze != 2 && randomaze != 3)
+    {
+        randomaze = 1
+    }
     if(randomaze == 1)
     {
         graphics.fillRect(600,0,20,200)

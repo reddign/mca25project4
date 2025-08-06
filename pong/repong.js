@@ -1,4 +1,3 @@
-console.log("Hello. Do you want to play with me?")
 const audio = new Audio("http://127.0.0.1/mca/Paint/random.wav")
 let canvas = document.querySelector("canvas")
 let graphics = canvas.getContext("2d")
@@ -105,7 +104,7 @@ function bounceBall()
 
 }
 
-function movepaddle(e)
+function move(e)
     {
     let thing = canvas.getBoundingClientRect()
     paddley = e.clientY - paddleheight * 2 - thing.y
