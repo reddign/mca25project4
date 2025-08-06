@@ -41,7 +41,7 @@ function move()
     }
     else
     {
-
+    win = 1
     }
 
 }
@@ -89,18 +89,29 @@ function maze()
         graphics.fillRect(600, 350,700,20)
     }
 }
+let pixel = graphics.getImageData(x, y, 1, 1).data
 
 export function animatezig()
 {
     clear()
-    graphics.fillStyle = "lime"
+    pixel = graphics.getImageData(x, y, 1, 1).data
+    graphics.fillStyle = "rgb(0,255,0)"
     graphics.fillRect(1450,0,50,canvas.height)
     graphics.fillStyle = "white"
     graphics.fillRect(0,0,canvas.width, 15)
     graphics.fillRect(0,canvas.height - 15,canvas.width, 15)
     maze()
     ball()
+    if(1==1) // wall detection by color here. (pixel.data[0] == 0)
+    {
     move()
+    }
+    else
+    {
+    x = 50
+    y = 50
+    spd = 1
+    }
 }
     console.log(graphics.getImageData(x, y, 1, 1))
 window.setInterval(animatezig, fps/2000)
