@@ -97,7 +97,5 @@ function movePlayer(e){
     
 }
 
-
-
-window.setInterval(animateblind,60)
+window.setInterval(animateblind,60);
 window.setInterval(timer,50);
