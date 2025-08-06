@@ -1,6 +1,9 @@
 const canvas = document.querySelector("canvas");
 const graphics = canvas.getContext("2d");
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 let playerX = -100;
 let playerY = -100;
 
@@ -46,7 +49,7 @@ function animate(timestamp) {
     clear();
     drawPlayer();
     graphics.fillStyle="white";
-    graphics.fillRect(450,90,30,30,1);
+    graphics.fillRect(canvas.width*(3/4),canvas.height*(9/40),canvas.width/20,canvas.width/20);
     drawMaze();
     console.log(isColliding);
     if(isColliding==false) {
@@ -60,16 +63,16 @@ function clear(){
 }
 
 function drawMaze(){
-    block(0,0,canvas.width,20,op);
-    // borders of the maze
-    block(100,200,700,20,op);
-    block(0,0,20,canvas.height,op);
-    block(0,canvas.height-20,canvas.width,20,op);
-    block(canvas.width-20,0,20,canvas.height,op);
-
-    block(100,0,20,120,op);
-    block(200,200,20,130,op);
-    block(300,40,20,130,op);
+    // Maze borders
+    block(0, 0, canvas.width, canvas.width/30, op);
+    block(0, 0, canvas.width/30, canvas.height, op);
+    block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, op);
+    block(canvas.width-(canvas.width/30), 0, canvas.width/30, canvas.height, op);
+    // Maze walls
+    block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, op);
+    block(canvas.width/3, (canvas.height/2)-(canvas.width/60), canvas.width/30, canvas.height*(13/40), op);
+    block(canvas.width/6, 0, canvas.width/30, canvas.height/5, op);
+    block(canvas.width/2, canvas.height/10, canvas.width/30, canvas.height*(13/40), op);
 }
 
 function drawPlayer(){

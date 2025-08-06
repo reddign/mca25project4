@@ -10,15 +10,15 @@ let cursorX;
 let cursorY;
 
 // Import games
-import {animateblind} from "./games/blind.js";
-import {animatepong} from "./games/pong.js";
-import {animatezig} from "./games/zig.js";
+// import {animateblind} from "./games/blind.js";
+// import {animatepong} from "./games/pong.js";
+// import {animatezig} from "./games/zig.js";
 
-const games = [
-    "animateblind",
-    "animatepong",
-    "animatezig"
-];
+// const games = [
+//     "animateblind",
+//     "animatepong",
+//     "animatezig"
+// ];
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -31,8 +31,8 @@ window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const randomIndex = Math.floor(Math.random() * jsFiles.length);
-        games[randomIndex]();
+        // const randomIndex = Math.floor(Math.random() * jsFiles.length);
+        // games[randomIndex]();
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
