@@ -24,7 +24,7 @@ let fadeDuration = 3333; // Fade duration in milliseconds
 // });
 
 function block(x, y, w, h, op){
-    graphics.fillStyle="RGB(" + (op * 255) + ", " + (op * 255) + ", " + (op * 255) + ")";
+    graphics.fillStyle="RGB("+(op*255)+", "+(op*255)+", "+(op*255)+")";
     graphics.fillRect(x, y, w, h);
 
     if(playerX > x
@@ -49,7 +49,7 @@ function animate(timestamp) {
     clear();
     drawPlayer();
     graphics.fillStyle="white";
-    graphics.fillRect(canvas.width*(3/4),canvas.height*(9/40),canvas.width/20,canvas.width/20);
+    graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
     drawMaze();
     console.log(isColliding);
     if(isColliding==false) {
@@ -67,17 +67,17 @@ function drawMaze(){
     block(0, 0, canvas.width, canvas.width/30, op);
     block(0, 0, canvas.width/30, canvas.height, op);
     block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, op);
-    block(canvas.width-(canvas.width/30), 0, canvas.width/30, canvas.height, op);
+    block(canvas.width*(29/30), 0, canvas.width/30, canvas.height, op);
     // Maze walls
     block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, op);
-    block(canvas.width/3, (canvas.height/2)-(canvas.width/60), canvas.width/30, canvas.height*(13/40), op);
-    block(canvas.width/6, 0, canvas.width/30, canvas.height/5, op);
-    block(canvas.width/2, canvas.height/10, canvas.width/30, canvas.height*(13/40), op);
+    block(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), op);
+    block(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), op);
+    block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), op);
 }
 
 function drawPlayer(){
     graphics.fillStyle="yellow"; //color can be changed
-    graphics.fillRect(playerX - 5, playerY - 5, 10, 10);
+    graphics.fillRect(playerX - canvas.width/120, playerY - canvas.width/120, canvas.width/60, canvas.width/60);
 }
 
 function movePlayer(e){
