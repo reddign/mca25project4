@@ -11,15 +11,12 @@ let i=0
 let op=1
 //op for opacity
 
-
-
 // document.addEventListener('keydown', function(event) {
 //     if (event.key === ' ' && readytoEcholocate==true) {
 //         op=1
 //         readytoEcholocate=false
 //     } // spacebar (' ') attempts to turn on echolocation
 // });
-
 
 function block(x,y,w,h,op){
     // 1--creates invisible block
@@ -30,16 +27,20 @@ function block(x,y,w,h,op){
     graphics.fillStyle="RGB(230,230,230," + op + ")"
     graphics.fillRect(x,y,w,h)
 }
-            
 
-function timer(){// timer separate from game's framerate, controls the maze becoming less visible
-    if(i<100){
-        i++
-        op = op-0.015
-    }
+let zero;
+requestAnimationFrame(firstFrame);
+function firstFrame(timestamp) {
+    zero = timestamp;
+    animate(timestamp);
 }
-timer()
-
+function animate(timestamp) {
+    const value = 1 - ((timestamp - zero) / 3333);
+    if (value > 0) {
+        op = value;
+        requestAnimationFrame(animate);
+    } else op = 1;
+}
 
 export function animateblind(){
     clear()
@@ -50,8 +51,6 @@ drawMaze()
 
 }
 
-
-
 function win(e){
     let winX=e.offsetX
     let winY=e.offsetY
@@ -59,7 +58,6 @@ function win(e){
         console.log("Win")
     } //creates a "win." can be changed to check for a specific color of win location, or other coordinates
 }
-
 
 function clear(){
     graphics.fillStyle="black"
@@ -84,6 +82,7 @@ function drawPlayer(){
     graphics.fillStyle="yellow" //color can be changed
     graphics.fillRect(playerX,playerY,10,10)
 }
+
 function movePlayer(e){
     playerY = e.offsetY;
     playerX = e.offsetX;
@@ -98,4 +97,3 @@ function movePlayer(e){
 }
 
 window.setInterval(animateblind,60);
-window.setInterval(timer,50);
