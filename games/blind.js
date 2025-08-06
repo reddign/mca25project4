@@ -11,6 +11,8 @@ let i=0;
 let op=1;
 //op for opacity
 
+let isColliding = false;
+
 // document.addEventListener('keydown', function(event) {
 //     if (event.key === ' ' && readytoEcholocate==true) {
 //         op=1
@@ -18,14 +20,16 @@ let op=1;
 //     } // spacebar (' ') attempts to turn on echolocation
 // });
 
-function block(x,y,w,h,op){
+function block(x, y, w, h, op){
     // 1--creates invisible block
-    graphics.fillStyle= "RGB(0,0,10)";
-    graphics.fillRect(x,y,w,h);
+    graphics.fillStyle= "RGB(0, 0, 10)";
+    graphics.fillRect(x, y, w, h);
 
     //2--creates visible block thats only opaque when op=1
-    graphics.fillStyle="RGB(230,230,230," + op + ")";
-    graphics.fillRect(x,y,w,h);
+    graphics.fillStyle="RGB(230, 230, 230, " + op + ")";
+    graphics.fillRect(x, y, w, h);
+
+    isColliding = isColliding(playerX, playerY, x, y, w, h);
 }
 
 let zero;
@@ -44,7 +48,9 @@ function animate(timestamp) {
     graphics.fillStyle="white";
     graphics.fillRect(450,90,30,30,1);
     drawMaze();
-    requestAnimationFrame(animate);
+    if(isColliding = false) {
+        requestAnimationFrame(animate);
+    }
 }
 
 function clear(){
@@ -74,27 +80,16 @@ function movePlayer(e){
     playerY = e.offsetY;
     playerX = e.offsetX;
 
-    const imageData1 = graphics.getImageData(playerX - 6, playerY - 6, 1, 1);
-    const pixel0 = imageData1.data;
-    const imageData2 = graphics.getImageData(playerX + 6, playerY - 6, 1, 1);
-    const pixel1 = imageData2.data;
-    const imageData3 = graphics.getImageData(playerX - 6, playerY + 6, 1, 1);
-    const pixel2 = imageData3.data;
-    const imageData4 = graphics.getImageData(playerX + 6, playerY + 6, 1, 1);
-    const pixel3 = imageData4.data;
-    const pixels = [pixel0, pixel1, pixel2, pixel3];
-    if(pixels[0][0] == 0 && pixels[0][1] == 0 && pixels[0][2] == 0
-    && pixels[1][0] == 0 && pixels[1][1] == 0 && pixels[1][2] == 0
-    && pixels[2][0] == 0 && pixels[2][1] == 0 && pixels[2][2] == 0
-    && pixels[3][0] == 0 && pixels[3][1] == 0 && pixels[3][2] == 0) {
-        console.log("Void")
-    } else {
-        console.log("Wall")
-    }
-
     if(playerX>450 && playerX<480 && playerY>90 && playerY<120){
         console.log("Win");
     }
+}
+
+function isColliding(playerX, playerY, wallX, wallY, wallW, wallH) {
+    return playerX > wallX &&
+            playerX < wallX + wallW &&
+            playerY > wallY &&
+            mouseY < wallY + wallH;
 }
 
 //todo: make a starting square so players dont teleport, detect walls to direct players to the start
