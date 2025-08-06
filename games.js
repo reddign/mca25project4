@@ -16,6 +16,12 @@ const jsFiles = [
     "zig.js"
 ];
 
+import {gameloop} from "games/blind.js";
+import {animate} from "games/color.js";
+import {animate} from "games/donothing.js";
+import {animate} from "games/pong.js";
+import {animate} from "games/zig.js";
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 graphics.textAlign = "center";
@@ -27,7 +33,8 @@ window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
+        const randomIndex = Math.floor(Math.random() * jsFiles.length);
+        const randomJsFile = jsFiles[randomIndex];
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
