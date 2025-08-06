@@ -11,7 +11,7 @@ let dir1 = 1
 let dir2 = 1
 let r = 7.5
 
-function animatepong()
+export function animatepong()
 {
     if(bounces < 5)
     {

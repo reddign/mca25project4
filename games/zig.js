@@ -90,7 +90,7 @@ function maze()
     }
 }
 
-function animatezig()
+export function animatezig()
 {
     clear()
     graphics.fillStyle = "lime"

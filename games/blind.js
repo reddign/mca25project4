@@ -41,7 +41,7 @@ function timer(){// timer separate from game's framerate, controls the maze beco
 timer()
 
 
-function animateblind(){
+export function animateblind(){
     clear()
     drawPlayer()
     graphics.fillStyle="white"
