@@ -46,17 +46,8 @@ function animateblind(){
     clear()
     drawPlayer()
     graphics.fillStyle="white"
-graphics.fillRect(450,90,30,30,1)
-drawMaze()
-
-}
-
-function win(e){
-    let winX=e.offsetX
-    let winY=e.offsetY
-    if(winX>450 && winX<480 && winY>90 && winY<120){
-        console.log("Win")
-    } //creates a "win." can be changed to check for a specific color of win location, or other coordinates
+    graphics.fillRect(450,90,30,30,1)
+    drawMaze()
 }
 
 function clear(){
@@ -78,7 +69,6 @@ function drawMaze(){
 }
 
 function drawPlayer(){
-
     graphics.fillStyle="yellow" //color can be changed
     graphics.fillRect(playerX,playerY,10,10)
 }
@@ -93,7 +83,10 @@ function movePlayer(e){
     let isNotWall = (pixel[0]==0 && pixel[1]==0 && pixel[2]==0)
     let isPlayer = (pixel[0]==255 && pixel[1]==255 && pixel[2]==0)
     let isTimer = (pixel[0]==255 && pixel[1]==0 && pixel[2]==0)
-    
+
+    if(playerX>450 && playerX<480 && playerY>90 && playerY<120){
+        console.log("Win")
+    }
 }
 
 window.setInterval(animateblind,60);
