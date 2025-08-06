@@ -90,17 +90,3 @@ canvas.addEventListener("click", () => {
     }
     canvas.requestPointerLock(); // Locks the pointer
 });
-
-startTick();
-
-function startTick() {
-    let tick = 0;
-    const intervalId = setInterval(() => {
-        tick++;
-        console.log(`Timer count: ${count}`);
-        if (count >= 1000) {
-            clearInterval(intervalId); // Stop the interval after 5 counts
-            console.log("Timer stopped.");
-        }
-    }, 50); // Execute every 1000 milliseconds (1 second)
-}
