@@ -10,9 +10,9 @@ let cursorX;
 let cursorY;
 
 // Import games
-import {animateblind} from "games/blind.js";
-import {animatepong} from "games/pong.js";
-import {animatezig} from "games/zig.js";
+import {animateblind} from "./games/blind.js";
+import {animatepong} from "./games/pong.js";
+import {animatezig} from "./games/zig.js";
 
 const games = [
     "animateblind",
