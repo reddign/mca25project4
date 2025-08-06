@@ -84,3 +84,5 @@ function movePlayer(e){
         console.log("Win");
     }
 }
+
+//todo: make a starting square so players dont teleport, detect walls to direct players to the start

@@ -34,10 +34,39 @@ function changesthings(event)
 
 function move()
 {
+    if(
+    (randomaze==1 && ((x > 600 && x < 620 && y > 0 && y < 200) ||
+        (x > 600 && x < 620 && y > 450 && y < 650) ||
+        (x > 850 && y > 400 && x < 870 && y < 500) ||
+        (x > 1100 && y > 0 && x < 1120 && y < 300) ||
+        (x > 1100 && y > 300 && x < 20 && y < 400) ||
+        (x > 1400 && y > 90 && x < 20 && y < 650) ||
+        (x > 1400 && y > 400 && x < 20 && y < 650)) )
+        ||
+    (randomaze==2 && ((x > 600 && y > 200 && x < 900 && y < 400) || 
+        (x > 1000 && y > 100 && x < 1040 && y < 140) ||
+        (x > 1000 && y > 450 && x < 900 && y < 400) ||
+        (x > 400 && y > 100 && x < 440 && y < 140) ||
+        (x > 400 && y > 450 && x < 440 && y < 490) ||
+        (x > 1200 && y > 50 && x < 1240 && y < 90) ||
+        (x > 1200 && y > 500 && x < 1240 && y < 540)))
+        ||
+    (randomaze==3 && 
+        ((x > 300 && y > 100 && x < 1300 && y < 120) ||
+        (x > 300 && y > 500 && x < 1300 && y < 520) ||
+        (x > 600 && y > 250 && x < 1300 && y < 270) ||
+        (x > 600 && y > 300 && x < 1300 && y < 370)))
+    ||  (y < 15) || (y > canvas.height - 15)    )
+    {
+        x = 50
+        y = 50
+        spd = 1
+        dir = 1
+    }
     if (x < 1475)
     {
-    y += dir * 2
-    x += spd
+        y += dir * 2
+        x += spd
     }
     else
     {
@@ -89,7 +118,6 @@ function maze()
         graphics.fillRect(600, 350,700,20)
     }
 }
-let pixel = graphics.getImageData(x, y, 1, 1).data
 
 export function animatezig()
 {
@@ -102,16 +130,7 @@ export function animatezig()
     graphics.fillRect(0,canvas.height - 15,canvas.width, 15)
     maze()
     ball()
-    if(1==1) // wall detection by color here. (pixel.data[0] == 0)
-    {
     move()
-    }
-    else
-    {
-    x = 50
-    y = 50
-    spd = 1
-    }
 }
-    console.log(graphics.getImageData(x, y, 1, 1))
+    console.log(graphics.getImageData(601, 1, 1, 1))
 window.setInterval(animatezig, fps/2000)
