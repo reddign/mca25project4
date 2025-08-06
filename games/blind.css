@@ -1,0 +1,16 @@
+/* Removes extra space */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Hides default cursor */
+body {
+    cursor: none;
+}
+
+#gameDisplay {
+    width: 100vw; /* 100% viewport width */
+    height: 100vh; /* 100% viewport height */
+    display: block; /* Removes extra space */
+}

@@ -1,5 +1,5 @@
-let canvas = document.querySelector("canvas"); 
-const graphics = canvas.getContext("2d", {willReadFrequently: true});
+const canvas = document.querySelector("canvas");
+const graphics = canvas.getContext("2d");
 
 let playerX = -100;
 let playerY = -100;
@@ -7,11 +7,11 @@ let playerY = -100;
 // let readytoEcholocate = false
 let lost=0;
 
-let i=0;
 let op=1;
 //op for opacity
 
 let isColliding = false;
+let fadeDuration = 3333; // Fade duration in milliseconds
 
 // document.addEventListener('keydown', function(event) {
 //     if (event.key === ' ' && readytoEcholocate==true) {
@@ -21,8 +21,7 @@ let isColliding = false;
 // });
 
 function block(x, y, w, h, op){
-    // Creates visible block thats only opaque when op=1
-    graphics.fillStyle="RGB(230, 230, 230, " + op + ")";
+    graphics.fillStyle="RGB(" + (op * 255) + ", " + (op * 255) + ", " + (op * 255) + ")";
     graphics.fillRect(x, y, w, h);
 
     if(playerX > x
@@ -40,7 +39,7 @@ function firstFrame(timestamp) {
     animate(timestamp);
 }
 function animate(timestamp) {
-    const value = (timestamp - zero) / 3333;
+    const value = (timestamp - zero) / fadeDuration;
     if (value < 1) {
         op = 1 - value;
     } else op = 0;
