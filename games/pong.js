@@ -11,7 +11,7 @@ let dir1 = 1
 let dir2 = 1
 let r = 7.5
 
-function animate()
+function animatePong()
 {
     if(bounces < 5)
     {
@@ -118,4 +118,4 @@ function move(e)
     }
     }
 
-    window.setInterval(animate, fps/2000)
+    window.setInterval(animatePong, fps/2000)
