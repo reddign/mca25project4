@@ -21,15 +21,16 @@ let isColliding = false;
 // });
 
 function block(x, y, w, h, op){
-    // 1--creates invisible block
-    graphics.fillStyle= "RGB(0, 0, 10)";
-    graphics.fillRect(x, y, w, h);
-
-    //2--creates visible block thats only opaque when op=1
+    // Creates visible block thats only opaque when op=1
     graphics.fillStyle="RGB(230, 230, 230, " + op + ")";
     graphics.fillRect(x, y, w, h);
 
-    isColliding = isColliding(playerX, playerY, x, y, w, h);
+    if(playerX > x
+    && playerX < x + w
+    && playerY > y
+    && playerY < y + h) {
+        isColliding = true;
+    }
 }
 
 let zero;
@@ -48,7 +49,8 @@ function animate(timestamp) {
     graphics.fillStyle="white";
     graphics.fillRect(450,90,30,30,1);
     drawMaze();
-    if(isColliding = false) {
+    console.log(isColliding);
+    if(isColliding==false) {
         requestAnimationFrame(animate);
     }
 }
@@ -83,13 +85,6 @@ function movePlayer(e){
     if(playerX>450 && playerX<480 && playerY>90 && playerY<120){
         console.log("Win");
     }
-}
-
-function isColliding(playerX, playerY, wallX, wallY, wallW, wallH) {
-    return playerX > wallX &&
-            playerX < wallX + wallW &&
-            playerY > wallY &&
-            mouseY < wallY + wallH;
 }
 
 //todo: make a starting square so players dont teleport, detect walls to direct players to the start
