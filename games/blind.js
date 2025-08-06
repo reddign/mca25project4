@@ -38,16 +38,13 @@ function animate(timestamp) {
     const value = (timestamp - zero) / 3333;
     if (value < 1) {
         op = 1 - value;
-        requestAnimationFrame(animate);
     } else op = 0;
-}
-
-function animateblind(){
-    clear()
-    drawPlayer()
-    graphics.fillStyle="white"
-    graphics.fillRect(450,90,30,30,1)
-    drawMaze()
+    clear();
+    drawPlayer();
+    graphics.fillStyle="white";
+    graphics.fillRect(450,90,30,30,1);
+    drawMaze();
+    requestAnimationFrame(animate);
 }
 
 function clear(){
@@ -88,5 +85,3 @@ function movePlayer(e){
         console.log("Win")
     }
 }
-
-window.setInterval(animateblind,60);
