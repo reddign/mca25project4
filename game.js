@@ -17,12 +17,18 @@ graphics.font = "30px Arial";
 graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
 
 window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    graphics.textAlign = "center";
-    graphics.textBaseline = "middle";
-    graphics.font = "30px Arial";
-    graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+    if (document.fullscreenElement) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+    } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        graphics.textAlign = "center";
+        graphics.textBaseline = "middle";
+        graphics.font = "30px Arial";
+        graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+    }
 });
 
 canvas.addEventListener("mousemove", (e) => {
@@ -70,12 +76,4 @@ canvas.addEventListener("click", () => {
         canvas.msRequestFullscreen();
     }
     canvas.requestPointerLock(); // Locks the pointer
-});
-
-document.addEventListener("fullscreenchange", (e) => {
-    if (document.fullscreenElement) {
-        // Testing
-    } else {
-        // Testing
-    }
 });
