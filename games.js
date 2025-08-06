@@ -33,7 +33,6 @@ window.addEventListener("resize", () => {
         canvas.height = window.innerHeight;
         const randomIndex = Math.floor(Math.random() * jsFiles.length);
         games[randomIndex]();
-
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;

@@ -42,7 +42,7 @@ function animate(timestamp) {
     } else op = 1;
 }
 
-export function animateblind(){
+function animateblind(){
     clear()
     drawPlayer()
     graphics.fillStyle="white"
