@@ -35,13 +35,12 @@ function pongClear()
 {
     graphics.fillStyle = "black";
     graphics.fillRect(0, 0, canvas.width, canvas.height);
-    if (bounces >= 5)
+    if (bounces >= 5);
     {
-        graphics.fillStyle = "white"
-        pongscore = spd * 10
-        var endString = "Nice! Score: "
-        graphics.fillText(endString, 10, 15)
-
+        graphics.fillStyle = "white";
+        pongscore = spd * 10;
+        var endString = "Nice! Score: ";
+        graphics.fillText(endString, 10, 15);
     }
 }
 
@@ -82,10 +81,10 @@ function bounceBall()
     }
     if (x + r > canvas.width)
     {
-        x = Math.random() * 100 + 25
-        y = Math.random() * 100 + 25
-        dir1 = 1
-        spd -= 2
+        x = Math.random() * 100 + 25;
+        y = Math.random() * 100 + 25;
+        dir1 = 1;
+        spd /= 1.5;
     }
     if (y + r > canvas.height || y - r < 0)
     {
@@ -97,7 +96,7 @@ function bounceBall()
         dir1 *= -1;
         dir2 *= -1;
         bounces++;
-        spd *= 1.5;
+        spd *= 1.25;
     }
 }
 
