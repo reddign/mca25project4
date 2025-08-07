@@ -1,4 +1,3 @@
-const audio = new Audio("http://127.0.0.1/mca/Paint/random.wav")
 let canvas = document.querySelector("canvas")
 let graphics = canvas.getContext("2d")
 

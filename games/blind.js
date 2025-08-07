@@ -1,9 +1,3 @@
-const canvas = document.querySelector("canvas");
-const graphics = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 let playerX = -100;
 let playerY = -100;
 
@@ -13,21 +7,12 @@ let isColliding = false;
 let fadeDuration = 3333; // Fade duration in milliseconds
 
 let gameRunning = false;
+let zero;
 
-function block(x, y, w, h, op) {
-    graphics.fillStyle="RGB("+(op*255)+", "+(op*255)+", "+(op*255)+")";
-    graphics.fillRect(x, y, w, h);
-
-    if(playerX > x
-    && playerX < x + w
-    && playerY > y
-    && playerY < y + h) {
-        isColliding = true;
-    }
+function init() {
+    requestAnimationFrame(animate);
 }
 
-let zero;
-requestAnimationFrame(animate);
 function animate(timestamp) {
     if(gameRunning == false) {
         zero = timestamp;
@@ -76,12 +61,24 @@ function drawMaze() {
     block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), op);
 }
 
+function block(x, y, w, h, op) {
+    graphics.fillStyle=`RGB(${op*255}, ${op*255}, ${op*255})`;
+    graphics.fillRect(x, y, w, h);
+
+    if(playerX > x
+    && playerX < x + w
+    && playerY > y
+    && playerY < y + h) {
+        isColliding = true;
+    }
+}
+
 function drawPlayer() {
     graphics.fillStyle = "yellow"; // Color can be changed
     graphics.fillRect(playerX - canvas.width/120, playerY - canvas.width/120, canvas.width/60, canvas.width/60);
 }
 
-function movePlayer(e) {
+canvas.addEventListener("mousemove", (e) => {
     playerY = e.offsetY;
     playerX = e.offsetX;
 
@@ -98,4 +95,4 @@ function movePlayer(e) {
             console.log("Win");
         }
     }
-}
+});

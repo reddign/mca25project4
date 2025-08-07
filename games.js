@@ -8,11 +8,10 @@ const customCursor = document.getElementById("customCursor");
 // Initialize variables
 let cursorX;
 let cursorY;
+let scriptSource;
 
 const games = [
     "blind",
-    "pong",
-    "zig"
 ];
 
 canvas.width = window.innerWidth;
@@ -26,10 +25,14 @@ window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const randomIndex = Math.floor(Math.random() * games.length);
-        const script = document.createElement('script');
-        script.src = `games/${games[randomIndex]}.js`;
-        document.body.appendChild(script);
+        // const randomIndex = Math.floor(Math.random() * games.length);
+        // const script = document.createElement("script");
+        // scriptSource = `games/${games[randomIndex]}.js`;
+        // script.src = scriptSource;
+        // script.onload = () => {
+        //     init();
+        // };
+        // document.body.appendChild(script);
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -75,6 +78,7 @@ canvas.addEventListener("mousemove", (e) => {
 
 // Enter fullscreen on click
 canvas.addEventListener("click", () => {
+    canvas.requestPointerLock(); // Locks the pointer
     if (canvas.requestFullscreen) {
         canvas.requestFullscreen();
     } else if (canvas.mozRequestFullScreen) { // Firefox Compatability
@@ -84,5 +88,4 @@ canvas.addEventListener("click", () => {
     } else if (canvas.msRequestFullscreen) { // IE/Edge Compatability
         canvas.msRequestFullscreen();
     }
-    canvas.requestPointerLock(); // Locks the pointer
 });
