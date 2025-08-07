@@ -82,7 +82,7 @@ function bounceBall()
         x = Math.random() * 100 + 25
         y = Math.random() * 100 + 25
         dir1 = 1
-        spd -= 0.5
+        spd -= 2
     }
     if (y + r > canvas.height || y - r < 0)
     {
