@@ -6,46 +6,34 @@ let op = 1; // op for opacity
 let isColliding = false;
 let fadeDuration = 3333; // Fade duration in milliseconds
 
-let gameRunning = false;
 let zero;
 
 function blindInit() {
-    requestAnimationFrame(animate);
+    requestAnimationFrame(blindAnimate);
 }
 
-function animate(timestamp) {
-    if(gameRunning == false) {
-        zero = timestamp;
-        clear();
-        graphics.textAlign = "center";
-        graphics.textBaseline = "middle";
-        graphics.fillStyle = "white";
-        graphics.font = "30px Arial";
-        graphics.fillText("Go to the green square to start.", canvas.width / 2, canvas.height / 2);
-        graphics.fillStyle = "lime";
-        graphics.fillRect(canvas.width*(43/60), (canvas.height*(3/4))-(canvas.width/60), canvas.width/20, canvas.width/20);
-        drawPlayer();
-    } else {
-        const value = (timestamp - zero) / fadeDuration;
-        if (value < 1) {
-            op = 1 - value;
-        } else op = 0;
-        clear();
-        graphics.fillStyle="lime";
-        graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
-        drawMaze();
-        drawPlayer();
-    }
+function blindAnimate(timestamp) {
+    const value = (timestamp - zero) / fadeDuration;
+    if (value < 1) {
+        op = 1 - value;
+    } else op = 0;
+    blindClear();
+    graphics.fillStyle="lime";
+    graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
+    drawMaze();
+    drawPlayer();
     if(isColliding == true) {
         isColliding = false;
-        gameRunning = false;
+        playerX = canvas.width*(89/120);
+        playerY = (canvas.height*(3/4))-(canvas.width/120);
+        zero = timestamp;
     }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(blindAnimate);
 }
 
-function clear() {
+function blindClear() {
     graphics.fillStyle="black";
-    graphics.fillRect(0,0,canvas.width,canvas.height);
+    graphics.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawMaze() {
@@ -79,20 +67,28 @@ function drawPlayer() {
 }
 
 canvas.addEventListener("mousemove", (e) => {
-    playerY = e.offsetY;
-    playerX = e.offsetX;
+    if(document.pointerLockElement) {
+        playerX += e.movementX;
+        playerY += e.movementY;
+        if(playerX < 0) {
+            playerX = 0;
+        } else if(playerX > canvas.width) {
+            playerX = canvas.width;
+        }
+        if(playerY < 0) {
+            playerY = 0;
+        } else if(playerY > canvas.height) {
+            playerY = canvas.height;
+        }
+    } else {
+        playerY = e.offsetY;
+        playerX = e.offsetX;
+    }
 
-    if(playerX>canvas.width*(43/60)
-    && playerX<canvas.width*(23/30)) {
-        if(playerY>(canvas.height*(3/4))-(canvas.width/60)
-        && playerY<(canvas.height*(3/4))+(canvas.width/40)
-        && gameRunning == false) {
-            gameRunning = true;
-        }
-        if(playerY>(canvas.height/4)-(canvas.width/60)
-        && playerY<(canvas.height/4)+(canvas.width/40)
-        && gameRunning == true) {
-            console.log("Win");
-        }
+    if(playerX > canvas.width*(43/60)
+    && playerX < canvas.width*(23/30)
+    && playerY > (canvas.height/4)-(canvas.width/60)
+    && playerY < (canvas.height/4)+(canvas.width/40)) {
+        console.log("Win");
     }
 });

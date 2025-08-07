@@ -12,6 +12,7 @@ let scriptSource;
 
 const games = [
     "blind",
+    "pong"
 ];
 
 canvas.width = window.innerWidth;
@@ -22,7 +23,7 @@ graphics.font = "30px Arial";
 graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", canvas.width / 2, canvas.height / 2);
 
 window.addEventListener("resize", () => {
-    if (document.fullscreenElement) {
+    if(document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         const randomIndex = Math.floor(Math.random() * games.length);
@@ -51,6 +52,7 @@ canvas.addEventListener("mousemove", (e) => {
 
 // Enter fullscreen on click
 canvas.addEventListener("click", () => {
+    canvas.requestPointerLock(); // Locks the pointer
     if (canvas.requestFullscreen) {
         canvas.requestFullscreen();
     } else if (canvas.mozRequestFullScreen) { // Firefox Compatability
