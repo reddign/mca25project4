@@ -9,7 +9,7 @@
 }
 .studentCreds,.studentInfo{ 
     /* makes the box around the information */
-    background-color: #969eb5;
+    background-color: #9739d7;
     padding: 20px;
     margin-left: 30px auto;
 }
@@ -25,7 +25,7 @@
 }
  /* TODO: Decide on final background color. */
 body{
-    background-color: #a7afc9;
+    background-color: #b76be0;
 }
 
 .Student{
@@ -33,7 +33,7 @@ body{
     
 
     max-width: 800px;
-    background-color: #a7afc9;
+    background-color: #b76be0;
     margin: 0px auto;
     padding: 20px;
     color: #251938;

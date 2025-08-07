@@ -38,4 +38,3 @@ function draw(x, y)
     let imageData = graphics.getImageData(randx + 1, randy +1, 48, 48);
     let pixel = imageData.data;
 }
-

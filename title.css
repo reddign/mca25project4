@@ -18,10 +18,10 @@ li a {
     font-size: 25px;
     margin-top: 10px;
 }
-
+/* 
 li a:hover{
     background-color: blue;
-}
+} */
 
 header{
     background-color:  rgb(207, 173, 246);
