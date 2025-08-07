@@ -96,7 +96,7 @@ function bounceBall()
         dir1 *= -1
         dir2 *= -1
         bounces++
-        spd *= 1.5
+        spd += 1.5
     }
 
 }

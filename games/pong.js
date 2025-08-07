@@ -13,6 +13,7 @@ let paddlex = 250
 let paddley = 30
 let paddlewidth = 10
 let paddleheight = 35
+let pongscore = 0
 
 function animatepong()
 {
@@ -37,8 +38,10 @@ function clear()
     if (bounces >= 5)
     {
         graphics.fillStyle = "white"
-        var endString = "Nice!"
+        pongscore = spd * 10
+        var endString = "Nice! Score: "
         graphics.fillText(endString, 10, 15)
+
     }
 }
 
@@ -82,7 +85,7 @@ function bounceBall()
         x = Math.random() * 100 + 25
         y = Math.random() * 100 + 25
         dir1 = 1
-        spd -= 0.5
+        spd -= 2
     }
     if (y + r > canvas.height || y - r < 0)
     {
@@ -96,7 +99,7 @@ function bounceBall()
         dir1 *= -1
         dir2 *= -1
         bounces++
-        spd *= 1.5
+        spd += 1.5
     }
 
 }
