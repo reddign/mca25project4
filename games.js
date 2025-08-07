@@ -27,10 +27,9 @@ window.addEventListener("resize", () => {
         canvas.height = window.innerHeight;
         const randomIndex = Math.floor(Math.random() * games.length);
         const script = document.createElement("script");
-        scriptSource = `games/${games[randomIndex]}.js`;
-        script.src = scriptSource;
+        script.src = `games/${games[randomIndex]}.js`;
         script.onload = () => {
-            init();
+            eval(`${games[randomIndex]}Init()`);
         };
         document.body.appendChild(script);
     } else {
@@ -44,8 +43,8 @@ window.addEventListener("resize", () => {
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    cursorX = e.clientX
-    cursorY = e.clientY
+    cursorX = e.offsetX
+    cursorY = e.offsetY
     customCursor.style.left = `${cursorX}px`;
     customCursor.style.top = `${cursorY}px`;
 });

@@ -9,7 +9,7 @@ let fadeDuration = 3333; // Fade duration in milliseconds
 let gameRunning = false;
 let zero;
 
-function init() {
+function blindInit() {
     requestAnimationFrame(animate);
 }
 

@@ -4,11 +4,15 @@ let graphics = canvas.getContext("2d")
 let bounces = 0
 let x = 30
 let y = 100
-let fps = 5
-let spd = 0.5
+let fps = 60
+let spd = 3
 let dir1 = 1
 let dir2 = 1
 let r = 7.5
+let paddlex = 250
+let paddley = 30
+let paddlewidth = 10
+let paddleheight = 35
 
 function animatepong()
 {
@@ -25,7 +29,7 @@ function animatepong()
     clear()
     }
 }
-let endstringlength = 0
+
 function clear()
 {
     graphics.fillStyle = "black"
@@ -34,7 +38,6 @@ function clear()
     {
         graphics.fillStyle = "white"
         var endString = "Nice!"
-        endstringlength = endString.length
         graphics.fillText(endString, 10, 15)
     }
 }
@@ -55,11 +58,6 @@ function ball()
     graphics.fill()
     graphics.closePath()
 }
-
-paddlex = 250
-paddley = 30
-paddlewidth = 10
-paddleheight = 35
 
 function paddle()
 {
@@ -117,4 +115,4 @@ function move(e)
     }
     }
 
-    window.setInterval(animatepong, fps/2000)
+    window.setInterval(animatepong, 1000/fps);
