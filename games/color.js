@@ -1,13 +1,11 @@
-/*With Selena's color variable, we could, after the player colors in the object, check each pixel in a 
-nested for-loop to see if it's colored, then add to another variable that is compared to the area of the shape 
-(probably a square now and not a circle)*/
-/*The stamp minigame could either be removed, repurposed, what have you, I'm not sure it's needed*/
 let canvas = document.querySelector("canvas")
 let graphics = canvas.getContext("2d")
 graphics.strokeStyle = "black"
 
 let randx = Math.round(Math.random() * (canvas.width - 100) + 50)
 let randy = Math.round(Math.random() * (canvas.height - 100) + 50)
+
+let done = 0
 
 graphics.strokeRect(randx,randy,50,50)
 
@@ -22,9 +20,10 @@ function paint(event)
 
 function see(event)
 {
-    if (graphics.getImageData(randx + 1,randy + 1,48, 48) == "rgb(0,255,0)")
+    if (pixel.data == "rgb(0,255,0)")
     {
-        console.log("ye")
+        console.log("yes")
+        done = 1
     }
     else
     {
@@ -35,7 +34,8 @@ function see(event)
 function draw(x, y)
 {
     graphics.fillStyle = "rgb(0,255,0)"
-    graphics.fillRect(x, y, 10, 10)
+    graphics.fillRect(x, y, 13, 13)
+    let imageData = graphics.getImageData(randx + 1, randy +1, 48, 48);
+    let pixel = imageData.data;
 }
-
 
