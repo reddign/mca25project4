@@ -4,8 +4,8 @@ let graphics = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let x = 50
-let y = 50
+let zigX = 50
+let zigY = 50
 let fps = 5
 let dir = 1
 let spd = 1
@@ -18,7 +18,7 @@ function ball()
 {
     graphics.fillStyle = "yellow"
     graphics.beginPath()
-    graphics.arc(x,y,15,0, Math.PI * 2)
+    graphics.arc(zigX, zigY, 15,0, Math.PI * 2)
     graphics.fill()
     graphics.closePath()
 }
@@ -37,38 +37,38 @@ canvas.addEventListener("mousedown", () => {
 function move()
 {
     if(
-    (randomaze==1 && ((x > 600 && x < 620 && y > 0 && y < 200) ||
-        (x > 600 && x < 620 && y > 450 && y < 650) ||
-        (x > 850 && y > 400 && x < 870 && y < 500) ||
-        (x > 1100 && y > 0 && x < 1120 && y < 300) ||
-        (x > 1100 && y > 300 && x < 20 && y < 400) ||
-        (x > 1400 && y > 90 && x < 20 && y < 650) ||
-        (x > 1400 && y > 400 && x < 20 && y < 650)) )
+    (randomaze==1 && ((zigX > 600 && zigX < 620 && zigY > 0 && zigY < 200) ||
+        (zigX > 600 && zigX < 620 && zigY > 450 && zigY < 650) ||
+        (zigX > 850 && zigY > 400 && zigX < 870 && zigY < 500) ||
+        (zigX > 1100 && zigY > 0 && zigX < 1120 && zigY < 300) ||
+        (zigX > 1100 && zigY > 300 && zigX < 20 && zigY < 400) ||
+        (zigX > 1400 && zigY > 90 && zigX < 20 && zigY < 650) ||
+        (zigX > 1400 && zigY > 400 && zigX < 20 && zigY < 650)) )
         ||
-    (randomaze==2 && ((x > 600 && y > 200 && x < 900 && y < 400) || 
-        (x > 1000 && y > 100 && x < 1040 && y < 140) ||
-        (x > 1000 && y > 450 && x < 900 && y < 400) ||
-        (x > 400 && y > 100 && x < 440 && y < 140) ||
-        (x > 400 && y > 450 && x < 440 && y < 490) ||
-        (x > 1200 && y > 50 && x < 1240 && y < 90) ||
-        (x > 1200 && y > 500 && x < 1240 && y < 540)))
+    (randomaze==2 && ((zigX > 600 && zigY > 200 && zigX < 900 && zigY < 400) || 
+        (zigX > 1000 && zigY > 100 && zigX < 1040 && zigY < 140) ||
+        (zigX > 1000 && zigY > 450 && zigX < 900 && zigY < 400) ||
+        (zigX > 400 && zigY > 100 && zigX < 440 && zigY < 140) ||
+        (zigX > 400 && zigY > 450 && zigX < 440 && zigY < 490) ||
+        (zigX > 1200 && zigY > 50 && zigX < 1240 && zigY < 90) ||
+        (zigX > 1200 && zigY > 500 && zigX < 1240 && zigY < 540)))
         ||
     (randomaze==3 && 
-        ((x > 300 && y > 100 && x < 1300 && y < 120) ||
-        (x > 300 && y > 500 && x < 1300 && y < 520) ||
-        (x > 600 && y > 250 && x < 1300 && y < 270) ||
-        (x > 600 && y > 300 && x < 1300 && y < 370)))
-    ||  (y < 15) || (y > canvas.height - 15)    )
+        ((zigX > 300 && zigY > 100 && zigX < 1300 && zigY < 120) ||
+        (zigX > 300 && zigY > 500 && zigX < 1300 && zigY < 520) ||
+        (zigX > 600 && zigY > 250 && zigX < 1300 && zigY < 270) ||
+        (zigX > 600 && zigY > 300 && zigX < 1300 && zigY < 370)))
+    ||  (zigY < 15) || (zigY > canvas.height - 15)    )
     {
-        x = 50
-        y = 50
+        zigX = 50
+        zigY = 50
         spd = 1
         dir = 1
     }
-    if (x < 1475)
+    if (zigX < 1475)
     {
-        y += dir * 2
-        x += spd
+        zigY += dir * 2
+        zigX += spd
     }
     else
     {
@@ -89,35 +89,47 @@ function maze()
     }
     if(randomaze == 1)
     {
-        graphics.fillRect(600,0,20,200)
-        graphics.fillRect(600,450,20,200)
+        block(canvas.width*(6/15),0,canvas.width/60,200)
+        block(600,450,20,200)
 
-        graphics.fillRect(850,400,20,100)
+        block(850,400,20,100)
 
-        graphics.fillRect(1100,0,20,300)
-        graphics.fillRect(1100,300,20,100)
+        block(1100,0,20,300)
+        block(1100,300,20,100)
 
-        graphics.fillRect(1400,90,20,100)
-        graphics.fillRect(1400,400,20,250)
+        block(1400,90,20,100)
+        block(1400,400,20,250)
 
     }
     if(randomaze == 2)
     {
-        graphics.fillRect(600,200,300,200)
-        graphics.fillRect(1000, 100, 40,40)
-        graphics.fillRect(1000, 450, 40,40)
-        graphics.fillRect(400, 100, 40,40)
-        graphics.fillRect(400, 450, 40,40)
-        graphics.fillRect(1200, 50, 40,40)
-        graphics.fillRect(1200, 500, 40,40)
+        block(600,200,300,200)
+        block(1000, 100, 40,40)
+        block(1000, 450, 40,40)
+        block(400, 100, 40,40)
+        block(400, 450, 40,40)
+        block(1200, 50, 40,40)
+        block(1200, 500, 40,40)
     }
     if(randomaze == 3)
     {
-        graphics.fillRect(300, 100,1000,20)
-        graphics.fillRect(300, 500,1000,20)
+        block(300, 100,1000,20)
+        block(300, 500,1000,20)
         
-        graphics.fillRect(600, 250,700,20)
-        graphics.fillRect(600, 350,700,20)
+        block(600, 250,700,20)
+        block(600, 350,700,20)
+    }
+}
+
+function zigBlock(x, y, w, h) {
+    graphics.fillStyle = "white";
+    graphics.fillRect(x, y, w, h);
+
+    if(zigX > x
+    && zigX < x + w
+    && zigY > y
+    && zigY < y + h) {
+        isColliding = true;
     }
 }
 

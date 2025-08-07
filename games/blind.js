@@ -41,18 +41,18 @@ function blindClear() {
 
 function drawMaze() {
     // Maze borders
-    block(0, 0, canvas.width, canvas.width/30, opacity);
-    block(0, 0, canvas.width/30, canvas.height, opacity);
-    block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, opacity);
-    block(canvas.width*(29/30), 0, canvas.width/30, canvas.height, opacity);
+    blindBlock(0, 0, canvas.width, canvas.width/30, opacity);
+    blindBlock(0, 0, canvas.width/30, canvas.height, opacity);
+    blindBlock(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, opacity);
+    blindBlock(canvas.width*(29/30), 0, canvas.width/30, canvas.height, opacity);
     // Maze walls
-    block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, opacity);
-    block(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), opacity);
-    block(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), opacity);
-    block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), opacity);
+    blindBlock(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, opacity);
+    blindBlock(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), opacity);
+    blindBlock(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), opacity);
+    blindBlock(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), opacity);
 }
 
-function block(x, y, w, h, opacity) {
+function blindBlock(x, y, w, h, opacity) {
     graphics.fillStyle=`RGB(${opacity*255}, ${opacity*255}, ${opacity*255})`;
     graphics.fillRect(x, y, w, h);
 
