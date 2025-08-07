@@ -1,10 +1,10 @@
 let bounces = 0;
 let x = 30;
 let y = 100;
-let spd = 3;
+let spd = 6;
 let dir1 = 1;
 let dir2 = 1;
-let r = 15;
+let r = canvas.width/120;
 let paddlex = canvas.width*(7/8);
 let paddley = canvas.height/2;
 let paddlewidth = canvas.width/60;
@@ -34,18 +34,13 @@ function pongClear() {
     graphics.fillStyle = "black";
     graphics.fillRect(0, 0, canvas.width, canvas.height);
     if (bounces >= 5) {
+        pongScore = Math.floor(spd * 10);
+        graphics.textAlign = "center";
+        graphics.textBaseline = "middle";
         graphics.fillStyle = "white";
-        pongscore = spd * 10;
-        var endString = "Nice! Score: ";
-        graphics.fillText(endString, 10, 15);
+        graphics.font = "30px Arial";
+        graphics.fillText(`Nice! Score: ${pongScore}`, canvas.width / 2, canvas.height / 2);
     }
-}
-
-function undead() {
-    graphics.fillStyle = "white";
-    graphics.fillRect(10, 25, 107.5, 20);
-    graphics.fillStyle = "black";
-    graphics.fillText("Play Again?", 10 + (107.5/4), 25 + (20/1.5));
 }
 
 function ball() {
@@ -70,19 +65,16 @@ function moveBall(timestamp) {
 }
 
 function bounceBall() {
-    if (x - r < 0)
-    {
+    if (x - r < 0) {
         dir1 *= -1;
     }
-    if (x + r > canvas.width)
-    {
+    if (x + r > canvas.width) {
         x = Math.random() * 100 + 25;
         y = Math.random() * 100 + 25;
         dir1 = 1;
         spd /= 1.5;
     }
-    if (y + r > canvas.height || y - r < 0)
-    {
+    if (y + r > canvas.height || y - r < 0) {
         dir2 *= -1;
     }
     if(x+r > paddlex && x+r < paddlex + paddlewidth &&
@@ -91,7 +83,7 @@ function bounceBall() {
         dir1 *= -1;
         dir2 *= -1;
         bounces++;
-        spd *= 1.25;
+        spd *= 1.5;
     }
 }
 

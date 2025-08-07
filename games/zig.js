@@ -1,5 +1,8 @@
-let canvas = document.querySelector("canvas")
-let graphics = canvas.getContext("2d")
+let canvas = document.querySelector("canvas");
+let graphics = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 let x = 50
 let y = 50
@@ -26,11 +29,10 @@ function clear()
     graphics.fillRect(0,0,canvas.width, canvas.height)
 }
 
-function changesthings(event)
-{
-    dir = dir * -1
+canvas.addEventListener("mousedown", () => {
+    dir *= -1
     spd += 0.25
-}
+});
 
 function move()
 {
