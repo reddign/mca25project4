@@ -25,14 +25,14 @@ window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        // const randomIndex = Math.floor(Math.random() * games.length);
-        // const script = document.createElement("script");
-        // scriptSource = `games/${games[randomIndex]}.js`;
-        // script.src = scriptSource;
-        // script.onload = () => {
-        //     init();
-        // };
-        // document.body.appendChild(script);
+        const randomIndex = Math.floor(Math.random() * games.length);
+        const script = document.createElement("script");
+        scriptSource = `games/${games[randomIndex]}.js`;
+        script.src = scriptSource;
+        script.onload = () => {
+            init();
+        };
+        document.body.appendChild(script);
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -44,41 +44,14 @@ window.addEventListener("resize", () => {
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    if (document.pointerLockElement) {
-        // Custom cursor moves independently while pointer locked
-        cursorX += e.movementX;
-        cursorY += e.movementY;
-        customCursor.style.left = `${cursorX}px`;
-        customCursor.style.top = `${cursorY}px`;
-
-        // Keeps custom cursor inside viewport
-        if(cursorX < 0) {
-            cursorX = 0;
-            customCursor.style.left = "0px";
-        } else if(cursorX > window.innerWidth) {
-            cursorX = window.innerWidth;
-            customCursor.style.left = `${window.innerWidth}px`;
-        }
-
-        if(cursorY < 0) {
-            cursorY = 0;
-            customCursor.style.top = "0px";
-        } else if(cursorY > window.innerHeight) {
-            cursorY = window.innerHeight;
-            customCursor.style.top = `${window.innerHeight}px`;
-        }
-    } else {
-        // Custom cursor snaps to pointer while pointer unlocked
-        cursorX = e.clientX
-        cursorY = e.clientY
-        customCursor.style.left = `${cursorX}px`;
-        customCursor.style.top = `${cursorY}px`;
-    }
+    cursorX = e.clientX
+    cursorY = e.clientY
+    customCursor.style.left = `${cursorX}px`;
+    customCursor.style.top = `${cursorY}px`;
 });
 
 // Enter fullscreen on click
 canvas.addEventListener("click", () => {
-    canvas.requestPointerLock(); // Locks the pointer
     if (canvas.requestFullscreen) {
         canvas.requestFullscreen();
     } else if (canvas.mozRequestFullScreen) { // Firefox Compatability

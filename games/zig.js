@@ -119,7 +119,7 @@ function maze()
     }
 }
 
-export function animatezig()
+function animatezig()
 {
     clear()
     pixel = graphics.getImageData(x, y, 1, 1).data

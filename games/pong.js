@@ -10,7 +10,7 @@ let dir1 = 1
 let dir2 = 1
 let r = 7.5
 
-export function animatepong()
+function animatepong()
 {
     if(bounces < 5)
     {
