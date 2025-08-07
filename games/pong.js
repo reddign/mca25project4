@@ -2,10 +2,10 @@ let bounces = 0;
 let x = 30;
 let y = 100;
 let fps = 60;
-let spd = 3;
+let spd = 6;
 let dir1 = 1;
 let dir2 = 1;
-let r = 7.5;
+let r = 15;
 let paddlex = canvas.width*(7/8);
 let paddley = -100;
 let paddlewidth = canvas.width/60;
@@ -35,12 +35,15 @@ function pongClear()
 {
     graphics.fillStyle = "black";
     graphics.fillRect(0, 0, canvas.width, canvas.height);
-    if (bounces >= 5);
+    if (bounces >= 5)
     {
-        graphics.fillStyle = "white";
-        pongscore = spd * 10;
-        var endString = "Nice! Score: ";
-        graphics.fillText(endString, 10, 15);
+        graphics.fillStyle = "white"
+        pongscore = spd * 10
+    }
+    else
+    {
+    var endString = "Nice! Score: "
+    graphics.fillText(endString, 10, 15)
     }
 }
 
