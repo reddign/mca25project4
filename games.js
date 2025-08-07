@@ -9,37 +9,34 @@ const customCursor = document.getElementById("customCursor");
 let cursorX;
 let cursorY;
 
-// Import games
-// import {animateblind} from "./games/blind.js";
-// import {animatepong} from "./games/pong.js";
-// import {animatezig} from "./games/zig.js";
-
-// const games = [
-//     "animateblind",
-//     "animatepong",
-//     "animatezig"
-// ];
+const games = [
+    "blind",
+    "pong",
+    "zig"
+];
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 graphics.textAlign = "center";
 graphics.textBaseline = "middle";
 graphics.font = "30px Arial";
-graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", canvas.width / 2, canvas.height / 2);
 
 window.addEventListener("resize", () => {
     if (document.fullscreenElement) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        // const randomIndex = Math.floor(Math.random() * jsFiles.length);
-        // games[randomIndex]();
+        const randomIndex = Math.floor(Math.random() * games.length);
+        const script = document.createElement('script');
+        script.src = `games/${games[randomIndex]}.js`;
+        document.body.appendChild(script);
     } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         graphics.textAlign = "center";
         graphics.textBaseline = "middle";
         graphics.font = "30px Arial";
-        graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", window.innerWidth / 2, window.innerHeight / 2);
+        graphics.fillText("Game Paused. Click to enter fullscreen and begin playing.", canvas.width / 2, canvas.height / 2);
     }
 });
 

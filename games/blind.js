@@ -7,23 +7,14 @@ canvas.height = window.innerHeight;
 let playerX = -100;
 let playerY = -100;
 
-// let readytoEcholocate = false
-let lost=0;
-
-let op=1;
-//op for opacity
+let op = 1; // op for opacity
 
 let isColliding = false;
 let fadeDuration = 3333; // Fade duration in milliseconds
 
-// document.addEventListener('keydown', function(event) {
-//     if (event.key === ' ' && readytoEcholocate==true) {
-//         op=1
-//         readytoEcholocate=false
-//     } // spacebar (' ') attempts to turn on echolocation
-// });
+let gameRunning = false;
 
-function block(x, y, w, h, op){
+function block(x, y, w, h, op) {
     graphics.fillStyle="RGB("+(op*255)+", "+(op*255)+", "+(op*255)+")";
     graphics.fillRect(x, y, w, h);
 
@@ -36,33 +27,43 @@ function block(x, y, w, h, op){
 }
 
 let zero;
-requestAnimationFrame(firstFrame);
-function firstFrame(timestamp) {
-    zero = timestamp;
-    animate(timestamp);
-}
+requestAnimationFrame(animate);
 function animate(timestamp) {
-    const value = (timestamp - zero) / fadeDuration;
-    if (value < 1) {
-        op = 1 - value;
-    } else op = 0;
-    clear();
-    drawPlayer();
-    graphics.fillStyle="white";
-    graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
-    drawMaze();
-    console.log(isColliding);
-    if(isColliding==false) {
-        requestAnimationFrame(animate);
+    if(gameRunning == false) {
+        zero = timestamp;
+        clear();
+        graphics.textAlign = "center";
+        graphics.textBaseline = "middle";
+        graphics.fillStyle = "white";
+        graphics.font = "30px Arial";
+        graphics.fillText("Go to the green square to start.", canvas.width / 2, canvas.height / 2);
+        graphics.fillStyle = "lime";
+        graphics.fillRect(canvas.width*(43/60), (canvas.height*(3/4))-(canvas.width/60), canvas.width/20, canvas.width/20);
+        drawPlayer();
+    } else {
+        const value = (timestamp - zero) / fadeDuration;
+        if (value < 1) {
+            op = 1 - value;
+        } else op = 0;
+        clear();
+        graphics.fillStyle="lime";
+        graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
+        drawMaze();
+        drawPlayer();
     }
+    if(isColliding == true) {
+        isColliding = false;
+        gameRunning = false;
+    }
+    requestAnimationFrame(animate);
 }
 
-function clear(){
+function clear() {
     graphics.fillStyle="black";
     graphics.fillRect(0,0,canvas.width,canvas.height);
 }
 
-function drawMaze(){
+function drawMaze() {
     // Maze borders
     block(0, 0, canvas.width, canvas.width/30, op);
     block(0, 0, canvas.width/30, canvas.height, op);
@@ -75,18 +76,26 @@ function drawMaze(){
     block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), op);
 }
 
-function drawPlayer(){
-    graphics.fillStyle="yellow"; //color can be changed
+function drawPlayer() {
+    graphics.fillStyle = "yellow"; // Color can be changed
     graphics.fillRect(playerX - canvas.width/120, playerY - canvas.width/120, canvas.width/60, canvas.width/60);
 }
 
-function movePlayer(e){
+function movePlayer(e) {
     playerY = e.offsetY;
     playerX = e.offsetX;
 
-    if(playerX>450 && playerX<480 && playerY>90 && playerY<120){
-        console.log("Win");
+    if(playerX>canvas.width*(43/60)
+    && playerX<canvas.width*(23/30)) {
+        if(playerY>(canvas.height*(3/4))-(canvas.width/60)
+        && playerY<(canvas.height*(3/4))+(canvas.width/40)
+        && gameRunning == false) {
+            gameRunning = true;
+        }
+        if(playerY>(canvas.height/4)-(canvas.width/60)
+        && playerY<(canvas.height/4)+(canvas.width/40)
+        && gameRunning == true) {
+            console.log("Win");
+        }
     }
 }
-
-//todo: make a starting square so players dont teleport, detect walls to direct players to the start
