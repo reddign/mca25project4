@@ -11,7 +11,6 @@ let cursorY;
 let scriptSource;
 
 const games = [
-    "blind",
     "pong"
 ];
 

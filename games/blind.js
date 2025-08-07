@@ -1,24 +1,27 @@
-let playerX = -100;
-let playerY = -100;
+let playerX = canvas.width*(89/120);
+let playerY = (canvas.height*(3/4))-(canvas.width/120);
 
-let op = 1; // op for opacity
+let opacity = 1;
 
 let isColliding = false;
 let fadeDuration = 3333; // Fade duration in milliseconds
 
-let zero;
+let blindZero;
 
 function blindInit() {
     requestAnimationFrame(blindAnimate);
 }
 
 function blindAnimate(timestamp) {
-    const value = (timestamp - zero) / fadeDuration;
+    if(!blindZero) {
+        blindZero = timestamp;
+    }
+    const value = (timestamp - blindZero) / fadeDuration;
     if (value < 1) {
-        op = 1 - value;
-    } else op = 0;
+        opacity = 1 - value;
+    } else opacity = 0;
     blindClear();
-    graphics.fillStyle="lime";
+    graphics.fillStyle = "lime";
     graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
     drawMaze();
     drawPlayer();
@@ -26,7 +29,7 @@ function blindAnimate(timestamp) {
         isColliding = false;
         playerX = canvas.width*(89/120);
         playerY = (canvas.height*(3/4))-(canvas.width/120);
-        zero = timestamp;
+        blindZero = timestamp;
     }
     requestAnimationFrame(blindAnimate);
 }
@@ -38,19 +41,19 @@ function blindClear() {
 
 function drawMaze() {
     // Maze borders
-    block(0, 0, canvas.width, canvas.width/30, op);
-    block(0, 0, canvas.width/30, canvas.height, op);
-    block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, op);
-    block(canvas.width*(29/30), 0, canvas.width/30, canvas.height, op);
+    block(0, 0, canvas.width, canvas.width/30, opacity);
+    block(0, 0, canvas.width/30, canvas.height, opacity);
+    block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, opacity);
+    block(canvas.width*(29/30), 0, canvas.width/30, canvas.height, opacity);
     // Maze walls
-    block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, op);
-    block(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), op);
-    block(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), op);
-    block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), op);
+    block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, opacity);
+    block(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), opacity);
+    block(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), opacity);
+    block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), opacity);
 }
 
-function block(x, y, w, h, op) {
-    graphics.fillStyle=`RGB(${op*255}, ${op*255}, ${op*255})`;
+function block(x, y, w, h, opacity) {
+    graphics.fillStyle=`RGB(${opacity*255}, ${opacity*255}, ${opacity*255})`;
     graphics.fillRect(x, y, w, h);
 
     if(playerX > x
