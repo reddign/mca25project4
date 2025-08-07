@@ -94,7 +94,6 @@ function bounceBall()
         && y -r > paddley && y-r < paddley + paddleheight)
     {
         dir1 *= -1
-        dir2 *= -1
         bounces++
         spd += 1.5
     }
