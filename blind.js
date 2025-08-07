@@ -1,3 +1,6 @@
+let canvas = document.querySelector("canvas")
+let graphics = canvas.getContext("2d")
+
 let playerX = -100;
 let playerY = -100;
 
