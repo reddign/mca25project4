@@ -1,101 +1,103 @@
-let canvas = document.querySelector("canvas")
-let graphics = canvas.getContext("2d")
+let canvas = document.querySelector("canvas"); 
+const graphics = canvas.getContext("2d");
 
-let playerX = -100;
-let playerY = -100;
+let playerX = -100
+let playerY = -100
 
-let op = 1; // op for opacity
+// let readytoEcholocate = false
+let lost=0
 
-let isColliding = false;
-let fadeDuration = 3333; // Fade duration in milliseconds
+let i=0
+let op=1
+//op for opacity
 
-let gameRunning = false;
-let zero;
 
-function blindInit() {
-    requestAnimationFrame(animate);
+
+// document.addEventListener('keydown', function(event) {
+//     if (event.key === ' ' && readytoEcholocate==true) {
+//         op=1
+//         readytoEcholocate=false
+//     } // spacebar (' ') attempts to turn on echolocation
+// });
+
+
+function block(x,y,w,h,op){
+    // 1--creates invisible block
+    graphics.fillStyle= "RGB(0,0,10)"
+    graphics.fillRect(x,y,w,h)
+
+    //2--creates visible block thats only opaque when op=1
+    graphics.fillStyle="RGB(230,230,230," + op + ")"
+    graphics.fillRect(x,y,w,h)
 }
+            
 
-function animate(timestamp) {
-    if(gameRunning == false) {
-        zero = timestamp;
-        clear();
-        graphics.textAlign = "center";
-        graphics.textBaseline = "middle";
-        graphics.fillStyle = "white";
-        graphics.font = "30px Arial";
-        graphics.fillText("Go to the green square to start.", canvas.width / 2, canvas.height / 2);
-        graphics.fillStyle = "lime";
-        graphics.fillRect(canvas.width*(43/60), (canvas.height*(3/4))-(canvas.width/60), canvas.width/20, canvas.width/20);
-        drawPlayer();
-    } else {
-        const value = (timestamp - zero) / fadeDuration;
-        if (value < 1) {
-            op = 1 - value;
-        } else op = 0;
-        clear();
-        graphics.fillStyle="lime";
-        graphics.fillRect(canvas.width*(43/60), (canvas.height/4)-(canvas.width/60), canvas.width/20, canvas.width/20);
-        drawMaze();
-        drawPlayer();
-    }
-    if(isColliding == true) {
-        isColliding = false;
-        gameRunning = false;
-    }
-    requestAnimationFrame(animate);
-}
-
-function clear() {
-    graphics.fillStyle="black";
-    graphics.fillRect(0,0,canvas.width,canvas.height);
-}
-
-function drawMaze() {
-    // Maze borders
-    block(0, 0, canvas.width, canvas.width/30, op);
-    block(0, 0, canvas.width/30, canvas.height, op);
-    block(0, canvas.height-(canvas.width/30), canvas.width, canvas.width/30, op);
-    block(canvas.width*(29/30), 0, canvas.width/30, canvas.height, op);
-    // Maze walls
-    block(canvas.width/6, (canvas.height/2)-(canvas.width/60), canvas.width*(5/6), canvas.width/30, op);
-    block(canvas.width/3, canvas.height/2, canvas.width/30, (canvas.height/3)-(canvas.width/30), op);
-    block(canvas.width/6, 0, canvas.width/30, (canvas.height/3)-(canvas.width/60), op);
-    block(canvas.width*(29/60), (canvas.height/12)+(canvas.width/30), canvas.width/30, (canvas.height/3)-(canvas.width*(3/60)), op);
-}
-
-function block(x, y, w, h, op) {
-    graphics.fillStyle=`RGB(${op*255}, ${op*255}, ${op*255})`;
-    graphics.fillRect(x, y, w, h);
-
-    if(playerX > x
-    && playerX < x + w
-    && playerY > y
-    && playerY < y + h) {
-        isColliding = true;
+function timer(){// timer separate from game's framerate, controls the maze becoming less visible
+    if(i<100){
+        i++
+        op = op-0.015
     }
 }
+timer()
 
-function drawPlayer() {
-    graphics.fillStyle = "yellow"; // Color can be changed
-    graphics.fillRect(playerX - canvas.width/120, playerY - canvas.width/120, canvas.width/60, canvas.width/60);
+
+function gameloop(){
+    clear()
+    drawPlayer()
+    graphics.fillStyle="white"
+graphics.fillRect(450,90,30,30,1)
+drawMaze()
+
 }
 
-canvas.addEventListener("mousemove", (e) => {
+
+
+function win(e){
+    let winX=e.offsetX
+    let winY=e.offsetY
+    if(winX>450 && winX<480 && winY>90 && winY<120){
+        console.log("Win")
+    } //creates a "win." can be changed to check for a specific color of win location, or other coordinates
+}
+
+
+function clear(){
+    graphics.fillStyle="black"
+    graphics.fillRect(0,0,canvas.width,canvas.height)
+}
+
+function drawMaze(){
+    block(0,0,canvas.width,20,op)
+    // borders of the maze
+    block(100,200,700,20,op)
+    block(0,0,20,canvas.height,op)
+    block(0,canvas.height-20,canvas.width,20,op)
+    block(canvas.width-20,0,20,canvas.height,op)
+
+    block(100,0,20,120,op)
+    block(200,200,20,130,op)
+    block(300,40,20,130,op)
+}
+
+function drawPlayer(){
+
+    graphics.fillStyle="yellow" //color can be changed
+    graphics.fillRect(playerX,playerY,10,10)
+}
+function movePlayer(e){
     playerY = e.offsetY;
     playerX = e.offsetX;
 
-    if(playerX>canvas.width*(43/60)
-    && playerX<canvas.width*(23/30)) {
-        if(playerY>(canvas.height*(3/4))-(canvas.width/60)
-        && playerY<(canvas.height*(3/4))+(canvas.width/40)
-        && gameRunning == false) {
-            gameRunning = true;
-        }
-        if(playerY>(canvas.height/4)-(canvas.width/60)
-        && playerY<(canvas.height/4)+(canvas.width/40)
-        && gameRunning == true) {
-            console.log("Win");
-        }
-    }
-});
+    const pixelColor = canvas.getContext('2d')
+    let imageData = pixelColor.getImageData(playerX,playerY,1,1)
+    let pixel = imageData.data;
+    let isNotWall = (pixel[0]==0 && pixel[1]==0 && pixel[2]==0)
+    let isPlayer = (pixel[0]==255 && pixel[1]==255 && pixel[2]==0)
+    let isTimer = (pixel[0]==255 && pixel[1]==0 && pixel[2]==0)
+    
+}
+
+
+
+window.setInterval(gameloop,60)
+window.setInterval(timer,50);
